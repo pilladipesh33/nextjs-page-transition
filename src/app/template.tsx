@@ -9,10 +9,9 @@ export default function Template({ children }: { children: React.ReactNode }) {
     const rowDelay = (totalRows - rowIndex - 1) * 0.05;
     return blockDelay + rowDelay;
   };
+
   return (
     <div>
-      {children}
-
       <AnimatePresence mode="wait">
         <div className="blocks-container transition-in">
           {Array.from({ length: 10 }).map((_, rowIndex) => (
@@ -34,7 +33,11 @@ export default function Template({ children }: { children: React.ReactNode }) {
             </div>
           ))}
         </div>
+      </AnimatePresence>
 
+      {children}
+
+      <AnimatePresence mode="wait">
         <div className="blocks-container transition-out">
           {Array.from({ length: 10 }).map((_, rowIndex) => (
             <div className="row" key={rowIndex}>
